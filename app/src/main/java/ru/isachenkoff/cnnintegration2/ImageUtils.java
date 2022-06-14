@@ -22,16 +22,6 @@ public class ImageUtils {
                 .toArray(int[][][]::new);
     }
     
-    public static int[] toPixelsFlat(Bitmap bitmap) {
-        int[] pixels = new int[bitmap.getWidth() * bitmap.getHeight()];
-        bitmap.getPixels(pixels, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
-        return Arrays.stream(pixels)
-                .mapToObj(Integer::toHexString)
-                .map(ImageUtils::argbHexToIntTriple)
-                .flatMapToInt(Arrays::stream)
-                .toArray();
-    }
-    
     private static <T> List<List<T>> splitBy(List<T> list, int len) {
         List<List<T>> newList = new ArrayList<>();
         for (int pos = 0; pos < list.size(); pos += len) {
