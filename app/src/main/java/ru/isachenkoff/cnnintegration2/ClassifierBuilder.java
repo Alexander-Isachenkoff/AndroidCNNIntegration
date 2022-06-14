@@ -43,12 +43,12 @@ public class ClassifierBuilder {
         }
         
         Map<String, String> params = readParamsMap(PARAMS_FILE);
-        int input_width = Integer.parseInt(tryGetParam("INPUT_WIDTH", params));
-        int input_height = Integer.parseInt(tryGetParam("INPUT_HEIGHT", params));
-        int classes_count = Integer.parseInt(tryGetParam("CLASSES_COUNT", params));
+        int inputWidth = Integer.parseInt(tryGetParam("INPUT_WIDTH", params));
+        int inputHeight = Integer.parseInt(tryGetParam("INPUT_HEIGHT", params));
+        int classesCount = Integer.parseInt(tryGetParam("CLASSES_COUNT", params));
         
         Map<Integer, String> classesMap = readParamsMap(CLASSES_FILE, Integer::parseInt);
-        return new Classifier(model, input_width, input_height, classes_count, classesMap);
+        return new Classifier(model, inputWidth, inputHeight, classesCount, classesMap);
     }
     
     private Map<String, String> readParamsMap(String file) {
