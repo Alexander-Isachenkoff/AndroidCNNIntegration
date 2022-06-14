@@ -69,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
         }
         String className = classifier.classify(currentImage);
         textView.setText("Я думаю, что это " + className);
+        // TODO: 14.06.2022 Нужно, чтобы название класса выводилось в TextView на русском языке.
+        // Для этого сделать класс для конвертации названия класса из файла classes.txt в статический объект,
+        // у которого могут быть еще какие-то атрибуты, например описание и эталонное изображение для сравнения
     }
     
 }
