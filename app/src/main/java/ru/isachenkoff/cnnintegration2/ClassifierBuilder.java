@@ -70,10 +70,9 @@ public class ClassifierBuilder {
             e.printStackTrace();
             return null;
         }
-        FileInputStream fis = new FileInputStream(fileDescriptor.getFileDescriptor());
         long startOffset = fileDescriptor.getStartOffset();
         long declaredLength = fileDescriptor.getDeclaredLength();
-        try {
+        try (FileInputStream fis = new FileInputStream(fileDescriptor.getFileDescriptor())) {
             return fis.getChannel().map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
         } catch (IOException e) {
             e.printStackTrace();
