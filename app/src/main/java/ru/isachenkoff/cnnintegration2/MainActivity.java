@@ -20,7 +20,6 @@ import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
     
-    private final ClassifierBuilder classifierBuilder = new ClassifierBuilder(this);
     private ImageView imageView;
     private Bitmap currentImage;
     private TextView textView;
@@ -39,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        ClassifierBuilder classifierBuilder = new ClassifierBuilder(this.getAssets());
         classifier = classifierBuilder.create();
         setContentView(R.layout.activity_main);
         imageView = (ImageView) findViewById(R.id.imageView);

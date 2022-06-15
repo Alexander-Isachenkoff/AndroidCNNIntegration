@@ -1,9 +1,9 @@
 package ru.isachenkoff.cnnintegration2;
 
 import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -22,10 +22,10 @@ public class ClassifierBuilder {
     public static final String MODEL_TFLITE_FILE = "mushrooms-model.tflite";
     public static final String PARAMS_FILE = "params.cfg";
     public static final String CLASSES_FILE = "classes.txt";
-    private final AppCompatActivity activity;
+    private final AssetManager assetManager;
     
-    ClassifierBuilder(AppCompatActivity activity) {
-        this.activity = activity;
+    ClassifierBuilder(AssetManager assetManager) {
+        this.assetManager = assetManager;
     }
     
     private static String tryGetParam(String name, Map<String, String> params) {
@@ -65,7 +65,7 @@ public class ClassifierBuilder {
     private ByteBuffer getModel() {
         AssetFileDescriptor fileDescriptor;
         try {
-            fileDescriptor = activity.getAssets().openFd(MODEL_TFLITE_FILE);
+            fileDescriptor = assetManager.openFd(MODEL_TFLITE_FILE);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -83,7 +83,7 @@ public class ClassifierBuilder {
     private Stream<String> getLines(String file) {
         InputStream inputStream;
         try {
-            inputStream = activity.getAssets().open(file);
+            inputStream = assetManager.open(file);
         } catch (IOException e) {
             throw new IllegalArgumentException("Не удалось прочитать файл " + file);
         }
